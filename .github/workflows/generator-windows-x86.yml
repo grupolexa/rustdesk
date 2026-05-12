@@ -246,6 +246,8 @@ jobs:
         env:
           VCPKG_DEFAULT_HOST_TRIPLET: ${{ matrix.job.vcpkg-triplet }}
         run: |
+          # Persist VCPKG_ROOT for all subsequent steps (including cargo build)
+          echo "VCPKG_ROOT=C:\vcpkg" >> "$GITHUB_ENV"
           if ! $VCPKG_ROOT/vcpkg \
             install \
             --triplet ${{ matrix.job.vcpkg-triplet }} \
